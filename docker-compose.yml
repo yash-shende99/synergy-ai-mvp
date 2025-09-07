@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  webserver:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: webserver
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./backend
+    # container_name: backend
+    expose:
+      - "3000"
+    env_file:
+      - ./backend/.env  
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
