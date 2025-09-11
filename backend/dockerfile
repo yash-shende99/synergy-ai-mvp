@@ -1,0 +1,30 @@
+# ---------- Stage 1: Build ----------
+FROM node:18 AS build
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy source code
+COPY . .
+
+# ---------- Stage 2: Runtime ----------
+FROM node:18-slim AS runtime
+
+# Set working directory
+WORKDIR /app
+
+# Copy only what's needed from build stage
+COPY --from=build /app ./
+
+# Expose port
+EXPOSE 4000
+
+# Start the server
+CMD ["npm", "start"]
+
