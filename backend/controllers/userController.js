@@ -432,3 +432,5 @@ export { registerUser, loginUser, getProfile, updateProfile, bookAppointment, li
 // minor update 6502
 
 // minor update 1864
+
+// minor update 6180
