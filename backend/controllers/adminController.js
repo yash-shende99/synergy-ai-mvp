@@ -231,3 +231,5 @@ const adminDashboard=async(req,res)=>{
 export {addDoctor,loginAdmin,allDoctors,appointmentsAdmin,appointmentCancle,adminDashboard}
 
 // minor update 4428
+
+// minor update 8763
