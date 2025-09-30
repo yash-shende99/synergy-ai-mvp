@@ -42,3 +42,5 @@ export default uploadOnCloudinary;
 // minor update 2498
 
 // minor update 1770
+
+// minor update 3906
